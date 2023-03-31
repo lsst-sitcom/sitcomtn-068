@@ -2,62 +2,77 @@
    :target: https://sitcomtn-068.lsst.io
 .. image:: https://github.com/lsst-sitcom/sitcomtn-068/workflows/CI/badge.svg
    :target: https://github.com/lsst-sitcom/sitcomtn-068/actions/
+..
+  Uncomment this section and modify the DOI strings to include a Zenodo DOI badge in the README
+  .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.#####.svg
+     :target: http://dx.doi.org/10.5281/zenodo.#####
 
-##############
-TMA slew rates
-##############
+#################
+TMA slewing rates
+#################
 
 SITCOMTN-068
 ============
 
 LTS-103: 2.2.2 Slewing Rates
 
-Links
-=====
+**Links:**
 
-- Live drafts: https://sitcomtn-068.lsst.io
-- GitHub: https://github.com/lsst-sitcom/sitcomtn-068
+- Publication URL: https://sitcomtn-068.lsst.io
+- Alternative editions: https://sitcomtn-068.lsst.io/v
+- GitHub repository: https://github.com/lsst-sitcom/sitcomtn-068
+- Build system: https://github.com/lsst-sitcom/sitcomtn-068/actions/
 
-Build
-=====
 
-This repository includes lsst-texmf_ as a Git submodule.
-Clone this repository::
+Build this technical note
+=========================
 
-    git clone --recurse-submodules https://github.com/lsst-sitcom/sitcomtn-068
+You can clone this repository and build the technote locally with `Sphinx`_:
 
-Compile the PDF::
+.. code-block:: bash
 
-    make
+   git clone https://github.com/lsst-sitcom/sitcomtn-068
+   cd sitcomtn-068
+   pip install -r requirements.txt
+   make html
 
-Clean built files::
+.. note::
 
-    make clean
+   In a Conda_ environment, ``pip install -r requirements.txt`` doesn't work as expected.
+   Instead, ``pip`` install the packages listed in ``requirements.txt`` individually.
 
-Updating acronyms
------------------
+The built technote is located at ``_build/html/index.html``.
 
-A table of the technote's acronyms and their definitions are maintained in the ``acronyms.tex`` file, which is committed as part of this repository.
-To update the acronyms table in ``acronyms.tex``::
+Editing this technical note
+===========================
 
-    make acronyms.tex
+You can edit the ``index.rst`` file, which is a reStructuredText document.
+The `DM reStructuredText Style Guide`_ is a good resource for how we write reStructuredText.
 
-*Note: this command requires that this repository was cloned as a submodule.*
+Remember that images and other types of assets should be stored in the ``_static/`` directory of this repository.
+See ``_static/README.rst`` for more information.
 
-The acronyms discovery code scans the LaTeX source for probable acronyms.
-You can ensure that certain strings aren't treated as acronyms by adding them to the `skipacronyms.txt <./skipacronyms.txt>`_ file.
+The published technote at https://sitcomtn-068.lsst.io will be automatically rebuilt whenever you push your changes to the ``main`` branch on `GitHub <https://github.com/lsst-sitcom/sitcomtn-068>`_.
 
-The lsst-texmf_ repository centrally maintains definitions for LSST acronyms.
-You can also add new acronym definitions, or override the definitions of acronyms, by editing the `myacronyms.txt <./myacronyms.txt>`_ file.
+Updating metadata
+=================
 
-Updating lsst-texmf
--------------------
+This technote's metadata is maintained in ``metadata.yaml``.
+In this metadata you can edit the technote's title, authors, publication date, etc..
+``metadata.yaml`` is self-documenting with inline comments.
 
-`lsst-texmf`_ includes BibTeX files, the ``lsstdoc`` class file, and acronym definitions, among other essential tooling for LSST's LaTeX documentation projects.
-To update to a newer version of `lsst-texmf`_, you can update the submodule in this repository::
+Using the bibliographies
+========================
 
-   git submodule update --init --recursive
+The bibliography files in ``lsstbib/`` are copies from `lsst-texmf`_.
+You can update them to the current `lsst-texmf`_ versions with::
 
-Commit, then push, the updated submodule.
+   make refresh-bib
 
-.. _lsst-texmf: https://github.com/lsst/lsst-texmf
+Add new bibliography items to the ``local.bib`` file in the root directory (and later add them to `lsst-texmf`_).
+
+.. _Sphinx: http://sphinx-doc.org
+.. _DM reStructuredText Style Guide: https://developer.lsst.io/restructuredtext/style.html
+.. _this repo: ./index.rst
+.. _Conda: http://conda.pydata.org/docs/
+.. _lsst-texmf: https://lsst-texmf.lsst.io
