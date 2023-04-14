@@ -55,13 +55,41 @@ Then for each of the identified slews we computed the maximum velocity, accelera
 Figure 2.  distribution of max velocities, accelerations and jerks for all identified azimuth and elevation slews
 
 
-From this we flagged 22 slews as exceeding the maximum limits of the telescope. For each of these we created diagnostic plots example shown in Figure 3, and visually inspected the slews. All of the flagged ones had poor fits that when run by hand resulted in slew profiles that were within specifications.
+From this we flagged 19 slews as exceeding the maximum limits of the telescope. For each of these we created diagnostic plots example shown in Figure 3, and visually inspected the slews. All of the flagged ones had poor fits that when run by hand resulted in slew profiles that were within specifications.
 
 
 
 .. image:: ./_static/example_slew_failure.png
 
 Figure 3.  an example of a selw that was identified as failing the max jerk specification, but as will all flagged slews the failure was an obvious fit failure.
+
+
+
+The below table lists the start time of flagged slews (this start time incudes a 4 second buffer, so should be 4 seconds before the slew ``command_trackTarget`` timestamp)
+
++------------+--------------+
+|    Day     |  slew start  |
++============+==============+
+| 2022-11-22 | 01:15:06.047 |
+| 2022-11-22 | 01:17:32.597 |
+| 2022-11-22 | 02:12:41.523 |
+| 2022-11-22 | 02:16:36.322 |
+| 2022-11-22 | 23:37:01.065 |
+| 2022-11-22 | 23:52:13.027 |
+| 2022-11-23 | 00:06:12.465 |
+| 2022-11-23 | 01:06:44.776 |
+| 2022-11-23 | 01:14:20.664 |
+| 2022-11-23 | 01:28:16.824 |
+| 2022-11-23 | 01:29:32.930 |
+| 2022-11-23 | 01:30:10.530 |
+| 2022-11-23 | 01:32:42.886 |
+| 2022-11-25 | 04:57:48.152 |
+| 2022-11-25 | 05:08:37.656 |
+| 2022-11-25 | 08:36:23.112 |
+| 2022-11-25 | 08:37:39.212 |
+| 2022-11-25 | 08:56:41.242 |
+| 2022-11-25 | 08:52:52.826 |
++------------+--------------+
 
 Summary
 ==========================
