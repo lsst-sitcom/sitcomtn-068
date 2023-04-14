@@ -7,18 +7,21 @@
 Abstract
 ========
 
-This technote shows analysis of velocity, acceleration and jerk of the TMA for all identified slews. This builds off the analysis described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`. All slews are with max specifications, but a small number exceed design specifications.
+This technote shows analysis of velocity, acceleration and jerk of the TMA for all identified slews. This builds off the analysis described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__. All slews are with max specifications, but a small number exceed design specifications.
 
-LTS-103: 2.2.2 Slewing Rates uses the following files in `lsst-sitcom/notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/>`
-int the `notebooks/tel_and_site_subsys_req_ver/tma/` directory:
+LTS-103: 2.2.2 Slewing Rates uses the following files in `lsst-sitcom/notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/>`__
+in the `notebooks/tel_and_site_subsys_req_ver/tma/` directory:
+
+
 - LVV-TXXXX_max_slew_rates.ipynb
+
 - create_slew_profiles.py
 
 Methodology
 ================
-The goal of this study was analyze the velocities, accelerations and jerks of every slew in Winter 2022/Spring 2023. This was done using the azimuth and elevation velocity data (derived from position encoders) stored in the EFD. To reduce noise and following the method described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>` The velocity data was smoothed (using a top hat kernel size=100) and fit with a cubic spline, this spline was then differentiated to obtain acceleration. Then the acceleration spline was smoothed and differentiated to obtain Jerk.
+The goal of this study was analyze the velocities, accelerations and jerks of every slew in Winter 2022/Spring 2023. This was done using the azimuth and elevation velocity data (derived from position encoders) stored in the EFD. To reduce noise and following the method described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__ The velocity data was smoothed (using a top hat kernel size=100) and fit with a cubic spline, this spline was then differentiated to obtain acceleration. Then the acceleration spline was smoothed and differentiated to obtain Jerk.
 
-We also used a `Savitzky–Golay filter<https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter>` to create slew profiles and found similar results.
+We also used a `Savitzky–Golay filter<https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter>`__ to create slew profiles and found similar results.
 
 This analysis was run all all slews identified in the EFD between the dates of 2022/11/01 and 2023/03/30.
 
@@ -45,12 +48,16 @@ We ran the slew identification script `create_slew_profiles.py` on all nights be
 
 Figure 1.  distribution of identified slews
 
-Then for each of the identified slews we computed the maximum velocity, acceleration and jerk. Histograms of the maximums are shown in Figure 2 (Figure 3) for method 1 (method 2). The top row shows histograms for Azmiuth slews and the bottom for eleveation. The orange and red lines in each panel show the design and maximum limits respectively.
-
+Then for each of the identified slews we computed the maximum velocity, acceleration and jerk. Histograms of the maximums are shown in Figure 2. The top row shows histograms for Azmiuth slews and the bottom for eleveation. The orange and red lines in each panel show the design and maximum limits respectively.
 
 .. image:: ./_static/all_slews_max.png
 
 Figure 2.  distribution of max velocities, accelerations and jerks for all identified azimuth and elevation slews
+
+
+From this we flagged 22 slews as exceeding the maximum limits of the telescope. For each of these we created diagnostic plots example shown in Figure 3, and visually inspected the slews. All of the flagged ones had poor fits that when run by hand resulted in slew profiles that were within specifications.
+
+
 
 .. image:: ./_static/example_slew_failure.png
 
