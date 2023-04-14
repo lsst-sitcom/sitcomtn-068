@@ -2,8 +2,7 @@
 
 .. sectnum::
 
-
-.. note::
+.. Metadata such as the title, authors, and description are set in metadata.yaml
 
 Abstract
 ========
@@ -21,7 +20,7 @@ We also used a `Savitzky–Golay filter<https://en.wikipedia.org/wiki/Savitzky%E
 This analysis was run all all slews identified in the EFD between the dates of 2022/11/01 and 2023/03/30.
 
 Slew Identification
-------------------
+--------------------
 Here we describe the method to identify the TMA slews.
 
 As in SITCOMTN-067, we identified slews based off of the 'lsst.sal.MTMount.command_trackTarget' and 'lsst.sal.MTMount.logevent_azimuthInPosition' tables in addition to 'lsst.sal.MTMount.azimuth'(elevation). The az_track timestamps were used to identify slew starts and the 'inPos'==True timestamp used to define the end of a slew. In extending this analysis to all slews, a few mismatches in slews occured, so we tried detecting slews only from the position encoder data, but found that method to be less reliable.
