@@ -9,7 +9,10 @@ Abstract
 
 This technote shows analysis of velocity, acceleration and jerk of the TMA for all identified slews. This builds off the analysis described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`. All slews are with max specifications, but a small number exceed design specifications.
 
-LTS-103: 2.2.2 Slewing Rates
+LTS-103: 2.2.2 Slewing Rates uses the following files in `lsst-sitcom/notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/>`
+int the `notebooks/tel_and_site_subsys_req_ver/tma/` directory:
+- LVV-TXXXX_max_slew_rates.ipynb
+- create_slew_profiles.py
 
 Methodology
 ================
