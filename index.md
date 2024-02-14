@@ -249,7 +249,7 @@ Slew profile of an offset slew in time. With 1 second of padding on either side,
 
 ### 5.1 Previous Work
 
-#### 5.1.1 # # # s
+**5.1.1 Methods**
 
 A previous version of this analysis has been done for every slew between 2022/11/01 and 2023/03/30. A cubic spline was used, and the top hat kernel size was set to 100. 
 
@@ -257,7 +257,7 @@ Slews were identified using the method found in SITCOMTN-067. The relevant table
 
 To match slew starts and stops, each slew start was matched with the closest slew stop that came after the start. The next slew start was then verified to come after the previous slew stop.
 
-#### 5.1.2 Results
+**5.1.2 Results**
 
 ```{figure} /_static/date_hist_spring.png
 :scale: 50 %
