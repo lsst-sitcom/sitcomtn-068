@@ -30,7 +30,7 @@ This analysis uses the following files from the [lsst-sitcom/notebooks_vandv](ht
 	- Directory: `notebooks/tel_and_site/subsys_req_ver/tma/`
 	- Example notebook to change initial parameters and generate plots
 - `sitcom710.py`
-	- Directory`python/lsst/sitcom/vandv/tma/`
+	- Directory: `python/lsst/sitcom/vandv/tma/`
 	- Does the bulk of the analysis
 
 ### 1.1 Requirements
@@ -49,7 +49,7 @@ This analysis is meant to explore the specification requirements from LTS-103: 2
 
 ### 1.3 Results Overview
 
-For the entirety of the data from 2023/11/15 to 2024/11/13, 15439 slews are analyzed. The best parameters were determined by the settings that generated the fewest slews that go over the maximum jerk limit for either azimuth or elevation. The parameters deemed the best for this analysis are a spline fit, 1 second of padding, top hat kernel size of 200, and a smoothing factor of 0.15. The number of failed slews for the entire range of data is 193 in azimuth (1.25%) and 198 in elevation (1.28%), and noting that some of these slews may overlap if a slew fails in both azimuth and elevation.
+For the entirety of the data from 2023/11/15 to 2024/01/13, 15439 slews are analyzed. The best parameters were determined by the settings that generated the fewest slews that go over the maximum jerk limit for either azimuth or elevation. The parameters deemed the best for this analysis are a spline fit, 1 second of padding, top hat kernel size of 200, and a smoothing factor of 0.15. The number of failed slews for the entire range of data is 193 in azimuth (1.25%) and 198 in elevation (1.28%), and noting that some of these slews may overlap if a slew fails in both azimuth and elevation.
 
 As for the SOAK test sample, the data ranges from 2023/11/22 to 2023/11/30. The best performance was with the following parameters: a spline fit, 0.25 seconds of padding, top hat kernel size of 200, and a smoothing factor of 0.15. Of the 1456 total slews, 17 failed in azimuth (1.17%) and 32 in elevation (2.20%).
 
