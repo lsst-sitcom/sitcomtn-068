@@ -8,7 +8,7 @@
 
 ```
 
-% Metadata such as the title, authors, and description are set in metadata.yaml
+% Metadata such as the title, authors, and description are set in the technote.toml file
 
 :::{note}
 This technote version is still a work-in-progress.
@@ -23,7 +23,7 @@ This analysis is not enough to accurately determine jerks due to a double deriva
 [Relevant ticket](https://jira.lsstcorp.org/browse/SITCOM-710)
 
 This technote shows analyses of velocity, acceleration and jerk of the TMA for all identified slews from dayObs 20231115 through 20240112. These analyses build off of [SITCOMN-067](https://sitcomtn-067.lsst.io/) to implement slew identification tools developed in `summit_utils`. 
-A subset of these slews are related to BLOCK-137 are used to mimic more realistic motions of the TMA ([Jira link](https://jira.lsstcorp.org/browse/BLOCK-137)). 
+A subset of these slews are related to BLOCK-137 are used to mimic more realistic motions of the TMA ([Jira link](https://jira.lsstcorp.org/browse/BLOCK-137)), which are referred to as SOAK tests within this document. 
 
 This analysis uses the following files from the [lsst-sitcom/notebooks_vandv](https://github.com/lsst-sitcom/notebooks_vandv/) Github repository:
 - `SITCOM-710-tma-motion-analysis.ipynb`
@@ -33,7 +33,7 @@ This analysis uses the following files from the [lsst-sitcom/notebooks_vandv](ht
 	- Directory`python/lsst/sitcom/vandv/tma/`
 	- Does the bulk of the analysis
 
-### 1.2 Requirements
+### 1.1 Requirements
 
 This analysis is meant to explore the specification requirements from LTS-103: 2.2.2 Slewing Rates, specifically that the motion of the TMA doesn't exceed the following values (absolute values):
 - Azimuth velocity: 10.5 deg/s
@@ -47,6 +47,20 @@ This analysis is meant to explore the specification requirements from LTS-103: 2
 - Requires the `sitcom-performance-analysis` branch in the [lsst-sitcom/summit_utils](https://github.com/lsst-sitcom/summit_utils/tree/sitcom-performance-analysis) repository for identifying slews associated with specific blocks.
 - Ran with the Weekly 2023_49 image on the Rubin Science Platform.
 
+### 1.3 Results Overview
+
+For the entirety of the data from 2023/11/15 to 2024/11/13, 15439 slews are analyzed. The best parameters were determined by the settings that generated the fewest slews that go over the maximum jerk limit for either azimuth or elevation. The parameters deemed the best for this analysis are a spline fit, 1 second of padding, top hat kernel size of 200, and a smoothing factor of 0.15. The number of failed slews for the entire range of data is 193 in azimuth (1.25%) and 198 in elevation (1.28%), and noting that some of these slews may overlap if a slew fails in both azimuth and elevation.
+
+As for the SOAK test sample, the data ranges from 2023/11/22 to 2023/11/30. The best performance was with the following parameters: a spline fit, 0.25 seconds of padding, top hat kernel size of 200, and a smoothing factor of 0.15. Of the 1456 total slews, 17 failed in azimuth (1.17%) and 32 in elevation (2.20%).
+
+Overall, the fits are most sensitive to changes in the top hat kernel size, although increasing smoothing from zero improves the number of failing slews. A higher kernel size also decreases the magnitudes of the jerks in fails slews; while some slews still fail, they fail less drastically.
+
+The following ranges of parameters are the values explored in this analysis:
+- Top hat kernel size: {100, 200}
+- Smoothing: {0.01, 0.1, 0.15, 0.20}
+- Padding in seconds: {0.00, 0.25, 1.00}
+- Fit method: {spline, savgol}
+
 ## 2 Methodology
 
 The analysis of the velocities, accelerations, and jerk of every slew between 2023/11/15 to 2024/01/13 are described here.
@@ -57,7 +71,7 @@ The main analysis used is a spline based fit, and follows the method described i
 
 Position data is not smoothed and is directly fit with a spline. Provided that no further derivatives are taken from position data, no prior kernel smoothing is necessary and saves computational resources.
 
-Another fit method used is the [Savitzky–Golay filter](https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter), aka the "savgol" filter. The spline method was found to perform better than the savgol filter.
+Another fit method used is the [Savitzky–Golay filter](https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter), aka the "savgol" filter.
 
 Slews are identified with the updated `summit_utils` functionality `getSlewsFromEventList()`, which looks for events in which `TMAState` is set to `SLEWING`.
 
