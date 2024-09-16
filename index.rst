@@ -1,8 +1,6 @@
-:tocdepth: 1
-
-.. sectnum::
-
-.. Metadata such as the title, authors, and description are set in metadata.yaml
+#################
+TMA slewing rates
+#################
 
 Abstract
 ========
@@ -10,7 +8,7 @@ Abstract
 This technote shows analysis of velocity, acceleration and jerk of the TMA for all identified slews. This builds off the analysis described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__. All slews are with max specifications, but a small number exceed design specifications.
 
 LTS-103: 2.2.2 Slewing Rates uses the following files in `lsst-sitcom/notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/>`__
-in the ``notebooks/tel_and_site_subsys_req_ver/tma/`` directory:
+in the `notebooks/tel_and_site_subsys_req_ver/tma/ <https://github.com/lsst-sitcom/notebooks_vandv/tree/develop/notebooks/tel_and_site/subsys_req_ver/tma>` directory:
 
 
 - ``LVV-TXXXX_max_slew_rates.ipynb``
@@ -29,7 +27,7 @@ Slew Identification
 --------------------
 Here we describe the method to identify the TMA slews.
 
-As in SITCOMTN-067, we identified slews based off of the ``lsst.sal.MTMount.command_trackTarget`` and ``lsst.sal.MTMount.logevent_azimuthInPosition`` tables in addition to ``lsst.sal.MTMount.azimuth'(elevation)``. The az_track timestamps were used to identify slew starts and the ``'inPos'==True`` timestamp used to define the end of a slew. In extending this analysis to all slews, a few mismatches in slews occured, so we tried detecting slews only from the position encoder data, but found that method to be less reliable.
+As in SITCOMTN-067, we identified slews based off of the ``lsst.sal.MTMount.command_trackTarget`` and ``lsst.sal.MTMount.logevent_azimuthInPosition`` tables in addition to ``lsst.sal.MTMount.azimuth'(elevation)``. The ``az_track`` timestamps were used to identify slew starts and the ``'inPos'==True`` timestamp used to define the end of a slew. In extending this analysis to all slews, a few mismatches in slews occured, so we tried detecting slews only from the position encoder data, but found that method to be less reliable.
 
 There was some difficulty with both methods in matching up slew start and stops. To do this we iterated over slew starts and identified the closest slew stop (after the slew start), then we checked that the next identified slew start occured after this closest stop.
 
@@ -39,10 +37,7 @@ There was some difficulty with both methods in matching up slew start and stops.
 Results
 ================
 
-After deriving slew profiles for each identified slew we used the following notebook to identify the maximum velocity, acceleration, and jerk experienced
-Link here.
-
-We ran the slew identification script ``create_slew_profiles.py`` on all nights between 31/03/2023 and 01/11/2022. The distribution of identified slews (using method 2, add method 1) is show in Figure 1.
+After deriving slew profiles for each identified slew we ran the slew identification script ``create_slew_profiles.py`` on all nights between 31/03/2023 and 01/11/2022. The distribution of identified slews (using method 2, add method 1) is show in Figure 1.
 
 .. image:: ./_static/date_hist.png
 
