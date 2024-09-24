@@ -8,7 +8,7 @@ Abstract
 This technote shows analysis of velocity, acceleration and jerk of the TMA for all identified slews. This builds off the analysis described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__. All slews are with max specifications, but a small number exceed design specifications.
 
 LTS-103: 2.2.2 Slewing Rates uses the following files in `lsst-sitcom/notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/>`__
-in the `notebooks/tel_and_site_subsys_req_ver/tma/ <https://github.com/lsst-sitcom/notebooks_vandv/tree/develop/notebooks/tel_and_site/subsys_req_ver/tma>` directory:
+in the `notebooks/tel_and_site_subsys_req_ver/tma/ <https://github.com/lsst-sitcom/notebooks_vandv/tree/develop/notebooks/tel_and_site/subsys_req_ver/tma>`__ directory:
 
 
 - ``LVV-TXXXX_max_slew_rates.ipynb``
@@ -17,11 +17,11 @@ in the `notebooks/tel_and_site_subsys_req_ver/tma/ <https://github.com/lsst-sitc
 
 Methodology
 ================
-The goal of this study was analyze the velocities, accelerations and jerks of every slew in Winter 2022/Spring 2023. This was done using the azimuth and elevation velocity data (derived from position encoders) stored in the EFD. To reduce noise and following the method described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__ The velocity data was smoothed (using a top hat kernel size=100) and fit with a cubic spline, this spline was then differentiated to obtain acceleration. Then the acceleration spline was smoothed and differentiated to obtain Jerk.
+The goal of this study was to analyze the velocities, accelerations and jerks of every slew in Winter 2022/Spring 2023. This was done using the azimuth and elevation velocity data (derived from position encoders) stored in the EFD. To reduce noise and following the method described in `SITCOMTN-067 <https://sitcomtn-067.lsst.io/>`__ The velocity data was smoothed (using a top hat kernel size=100) and fit with a cubic spline, this spline was then differentiated to obtain acceleration. Then the acceleration spline was smoothed and differentiated to obtain Jerk.
 
 We also used a `Savitzky–Golay filter <https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter>`__ to create slew profiles and found similar results.
 
-This analysis was run all all slews identified in the EFD between the dates of 2022/11/01 and 2023/03/30.
+This analysis was run on all slews identified in the EFD between the dates of 2022/11/01 and 2023/03/30.
 
 Slew Identification
 --------------------
