@@ -1,0 +1,17 @@
+[technote]
+id = "SITCOMTN-068"
+series_id = "SITCOMTN"
+canonical_url = "https://sitcomtn-068.lsst.io/"
+github_url = "https://github.com/lsst-sitcom/sitcomtn-068"
+github_default_branch = "main"
+organization.name = "Vera C. Rubin Observatory"
+organization.ror = "https://ror.org/048g3cy84"
+license.id = "CC-BY-4.0"
+[[technote.authors]]
+name = {given = "Peter S.", family = "Ferguson"}
+internal_id = "fergusonps"
+orcid = "https://orcid.org/0000-0001-6957-1627"
+[[technote.authors.affiliations]]
+name = "Department of Physics"
+internal_id = "WisconsinMadison"
+address = "University of Wisconsin-Madison, Madison, WI 53706, USA"
